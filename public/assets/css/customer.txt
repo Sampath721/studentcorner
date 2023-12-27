@@ -1,0 +1,46 @@
+public function get_customer($search)
+    {
+        $start = $search['start'];
+        $limit = $search['limit'];
+        $key_word = $search['key_word'];
+        // $status = $search['status'];
+
+        $db = db_connect();
+        $builder = $db->table('customer_info');
+
+        //$builder->orderBy('status');
+        //$builder->orderBy('emp_infoid', 'DESC');
+
+        /* if($status != ''){
+            $builder->where('status', $status);
+        } */
+        //$builder->where('status', 1);
+
+        /* if ($key_word != '') {
+            $builder->like('fullname', $key_word);
+        } */
+
+        $builder->limit($limit, $start);
+        $customers = $builder->get();
+
+        $builder2 = $db->table('customer_info');
+        $builder2->select('count(*) as ttl_rows');
+
+        //$builder2->orderBy('emp_infoid', 'DESC');
+        /* if($status != ''){
+            $builder2->where('status', $status);
+        } */
+        //$builder2->where('status', 1);
+
+        /* if ($key_word != '') {
+            $builder2->like('fullname', $key_word);
+        } */
+
+        $builder2->orderBy('customer_id','DESC');
+        //$builder2->orderBy('status', 'ASC');
+
+        $row = $builder2->get()->getRow();
+        $customers->ttl_rows = $row->ttl_rows;
+
+        return $customers;
+    } customer

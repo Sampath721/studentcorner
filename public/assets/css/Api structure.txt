@@ -1,0 +1,27 @@
+{                    
+
+        "name":"Create_Account",
+        "param":{
+                "Email":"sr@gmail.com",
+                "Password":"Sam133@331",
+                "UserName":"sri",
+                "PhoneNumber":"8331974277"
+        }
+
+}
+
+{                    
+
+        "name":"get_all_users_data",
+        "param":{
+        }
+
+}
+{                    
+
+        "name":"delete_single_user",
+        "param":{
+            "User_id":78
+        }
+
+}
